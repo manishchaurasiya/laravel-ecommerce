@@ -71,30 +71,30 @@
 </main>
 
 <script>
-    $(document).ready(function() {
-        $('#submit').click(function(e) {
-            e.preventDefault();
-            var name = $('#frm-reg-lname').val();
-            var email = $('#frm-reg-email').val();
-            var password = $('#frm-reg-pass').val();
-            var confirm_password = $('#frm-reg-cfpass').val();
-            // console.log(name,email,password,confirm_password);
-            var email_pattern = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i);
-            var password_pattern = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/);
-            $('.error').hide();
-            if (name.length < 1) {
-                $('#frm-reg-lname').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">This field is required</span>');
-            } else if (email.length < 1) {
-                $('#frm-reg-email').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">This field is required</span>');
-            } else if (!email_pattern.test(email)) {
-                $('#frm-reg-email').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">Enter a valid email address</span>');
-            } else if (!password_pattern.test(password)) {
-                $('#frm-reg-pass').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">Minimum eight characters, at least one upper and lower case letter, one number and one special character</span>');
-            } else {
-                $('#submit').submit();
-            }
+    // $(document).ready(function() {
+    //     $('#submit').click(function(e) {
+    //         e.preventDefault();
+    //         var name = $('#frm-reg-lname').val();
+    //         var email = $('#frm-reg-email').val();
+    //         var password = $('#frm-reg-pass').val();
+    //         var confirm_password = $('#frm-reg-cfpass').val();
+    //         // console.log(name,email,password,confirm_password);
+    //         var email_pattern = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i);
+    //         var password_pattern = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/);
+    //         $('.error').hide();
+    //         if (name.length < 1) {
+    //             $('#frm-reg-lname').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">This field is required</span>');
+    //         } else if (email.length < 1) {
+    //             $('#frm-reg-email').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">This field is required</span>');
+    //         } else if (!email_pattern.test(email)) {
+    //             $('#frm-reg-email').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">Enter a valid email address</span>');
+    //         } else if (!password_pattern.test(password)) {
+    //             $('#frm-reg-pass').after('<span class="error" style="color:red;font-weight:900; margin-top:10px;">Minimum eight characters, at least one upper and lower case letter, one number and one special character</span>');
+    //         } else {
+    //             $('#submit').submit();
+    //         }
 
 
-        });
-    });
+    //     });
+    // });
 </script>

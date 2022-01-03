@@ -37,9 +37,10 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::where('status','Active')->get();
-        $products = Product::with(['Thumbnail','Brand'])->where([['status','Active']])->get();
+        // $products = Product::with(['Thumbnail','Brand'])
+        $products = Product::with(['Thumbnail','Brand'])->where('status','Active')->get();
 
-        dd($products->toArray());
+        // dd($products->toArray());
         $smartphones = Product::with('Thumbnail')->where([['category_id', 1],['status','Active']])->take(8)->get();
         $watches = Product::with('Thumbnail')->where([['category_id', 2],['status','Active']])->take(8)->get();
         $laptops = Product::with('Thumbnail')->where([['category_id', 3],['status','Active']])->take(8)->get();

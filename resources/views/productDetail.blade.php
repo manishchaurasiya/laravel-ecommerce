@@ -36,7 +36,7 @@
 						<div class="product-rating">
 							@php $rating = $products->average_rating;
 							@endphp
-
+																									
 							@foreach(range(1,5) as $i)
 							@if($rating >0.5)
 							<i class="fa fa-star" aria-hidden="true"></i>
