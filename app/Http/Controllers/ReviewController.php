@@ -24,13 +24,13 @@ class ReviewController extends Controller
 
         $reviews = Product::with('Review')->get();
         // dd($reviews->toArray());
-        $response = Product_review::create([
-            'product_id' => $request->product_id,
-            'user_id' => auth()->user()->id,
-            'order_id' => $request->order_id,
+        $response = Product_review::updateOrCreate(
+            ['product_id' => $request->product_id,
+            'order_id' => $request->order_id ],
+            ['user_id' => auth()->user()->id,
             'rating' => $request->rating,
-            'review' => $request->review,
-        ]);
+            'review' => $request->review,]
+        );
         return redirect('/');
     }
 }
