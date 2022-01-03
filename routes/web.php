@@ -95,7 +95,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
 
     // vendor routes
-    Route::prefix('vendor/')->name('vendor.')->group(function () {
+        Route::prefix('vendor/')->name('vendor.')->group(function () {
         Route::get('dashboard', [VendorController::class, 'dashboard'])->name('dashboard');
         Route::get('products', [VendorController::class, 'products'])->name('products');
         Route::get('addProducts', [VendorController::class, 'addProducts'])->name('addProducts');

@@ -70,7 +70,7 @@
 					<div class="mid-section main-info-area">
 
 						<div class="wrap-logo-top left-section">
-							<a href="index.html" class="link-to-home"><img src="https://mybazar.online/mybazar_online.png" alt="mercado"></a>
+							<a href="{{route ('home') }}" class="link-to-home"><img src="https://mybazar.online/mybazar_online.png" alt="mercado"></a>
 						</div>
 
 						<div class="wrap-search center-section">
@@ -142,7 +142,7 @@
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu">
 								<li class="menu-item home-icon">
-									<a href="/" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+									<a href="{{route ('home') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
 									<a href="{{route ('about') }}" class="link-term mercado-item-title">About Us</a>
