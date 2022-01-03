@@ -4,6 +4,7 @@
         <tr>
             <th scope="col">S.No.</th>
             <th scope="col">NAME</th>
+            <td>images</td>
             <th scope="col">PRICE</th>
             <th scope="col">QUANTITY</th>
             <th scope="col">TOTAL PRICE</th>
@@ -22,6 +23,7 @@
         <tr>
             <td scope="row">{{$serial_number++}}</td>
             <td>{{$order->product->name}}</td>
+            <td><img src="{{asset('storage/'.$order->product->Thumbnail->file)}}" alt="sfdgfd" width="100px"></td>
             <td>{{$order->product->price}}</td>
             <td>{{$order->price/$order->product->price}}</td>
             <td>{{$order->price}}</td>

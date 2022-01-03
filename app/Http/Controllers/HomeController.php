@@ -98,7 +98,7 @@ class HomeController extends Controller
     public function myOrder()
     {
         $orders = Order::with('product')->where('customer_id', auth()->user()->id)->get();
-        dd($orders->toArray());
+        // dd($orders->toArray());
         return view('myOrder', compact('orders'));
     }
 
