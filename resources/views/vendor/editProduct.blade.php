@@ -23,10 +23,41 @@
               </div>
               <div class="form-group mb-3">
                 <label for="category">Category</label>
+                <!-- {{$productDetails->category->name}} -->
                 <select class="custom-select tm-select-accounts" name="category" id="category">
                   <option>Select category</option>
-                  @foreach($categories as $category)  
+                  @foreach($categories as $key => $category)
+                  @if($category == $productDetails->category)
+                  <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                  @else
                   <option value="{{$category->id}}">{{$category->name}}</option>
+                  @endif
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group mb-3">
+                <label for="category">Color</label>
+                <select class="custom-select tm-select-accounts" name="color" id="category">
+                  <option>Select color</option>
+                  @foreach($colors as $key => $color)
+                  @if($color == $productDetails->color)
+                  <option value="{{$color->id}}" selected>{{$color->color}}</option>
+                  @else
+                  <option value="{{$color->id}}">{{$color->color}}</option>
+                  @endif
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group mb-3">
+                <label for="category">Brand</label>
+                <select class="custom-select tm-select-accounts" name="brand" id="category">
+                  <option>Select brand</option>
+                  @foreach($brands as $brand)
+                  @if($brand== $productDetails->brand)
+                  <option value="{{$brand->id}}" selected>{{$brand->brand}}</option>
+                  @else
+                  <option value="{{$brand->id}}">{{$brand->brand}}</option>
+                  @endif
                   @endforeach
                 </select>
               </div>
@@ -37,20 +68,23 @@
                 </div>
               </div>
 
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-            <div class="tm-product-img-edit mx-auto">
-              <img src="vendor/img/product-image.jpg" alt="Product image" class="img-fluid d-block mx-auto">
-              <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
-            </div>
-            <div class="custom-file mt-3 mb-3">
-              <input id="fileInput" type="file" style="display:none;" />
-              <input type="button" class="btn btn-primary btn-block mx-auto" value="CHANGE IMAGE NOW" onclick="document.getElementById('fileInput').click();" />
-            </div>
-          </div>
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
-          </div>
+             </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-edit mx-auto">
+                  <img src="{{asset ('storage/'.$productDetails->Thumbnail->file)}}" width="100px" height="100px" alt="Product image" class="img-fluid d-block mx-auto">
+                  @foreach($productDetails->gallary as $photo)
+                  <img src="{{asset ('storage/'.$photo->file)}}" width="100px" height="100px" alt="Product image" class=" mt-5 mx-auto">
+                  @endforeach
+                  <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" type="file" style="display:none;" />
+                  <input type="button" class="btn btn-primary btn-block mx-auto" value="CHANGE IMAGE NOW" onclick="document.getElementById('fileInput').click();" />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
+              </div>
           </form>
         </div>
       </div>

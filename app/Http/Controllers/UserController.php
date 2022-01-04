@@ -91,11 +91,11 @@ class UserController extends Controller
             $oldphoto = $model->profile_pic;
             $fileName = $request->file('file')->getClientOriginalName();
             $fileName = rand(1111, 9999) . "_" . $fileName;
-            $path = $request->file('file')->storeAs('storage', $fileName, 'public');
+            $path = $request->file('file')->storeAs('profile', $fileName, 'public');
             $model->profile_pic = $fileName;
             if ($path) {
-                if (Storage::exists('public/storage/' . $oldphoto)) {
-                    Storage::delete('public/storage/' . $oldphoto);
+                if (Storage::exists('public/profile/' . $oldphoto)) {
+                    Storage::delete('public/profile/' . $oldphoto);
                 }
             }
         }

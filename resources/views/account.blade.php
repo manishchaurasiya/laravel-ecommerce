@@ -2,88 +2,90 @@
 <!--main area-->
 <main id="main" class="main-site">
 
-<div class="container">
+    <div class="container">
 
-<div class="wrap-breadcrumb">
-<ul>
-<li class="item-link"><a href="/" class="link">home</a></li>
-<li class="item-link"><span>Account Details</span></li>
-</ul>
-</div>
-<div class=" main-content-area">
-<div class="summary summary-checkout">
-<div class="wrap-address-billing">
-<h3 class="box-title">Profile Details</h3>
-<form action="{{ route('update') }}" method="POST"  enctype="multipart/form-data" name="frm-billing">
-  
-  @csrf    
- 
-<p class="row-in-form">
-<label for="fname">Name<span>*</span></label>
-<input id="fname" type="text" name="name" value="{{$users->name}}" placeholder="Your name">
-</p>
-<p class="row-in-form">
-<label for="email">Email Addreess:</label>
-<input id="email" type="email" name="email" value="{{$users->email}}" placeholder="Type your email">
-</p>
-<p class="row-in-form">
-<label for="phone">Phone number<span>*</span></label>
-<input id="phone" type="number" name="phone1" value="{{$users->phone_no}}" placeholder="10 digits format">
-</p>
-<p class="row-in-form">
-<label for="phone">Phone number<span>*</span></label>
-<input id="phone" type="number" name="phone" value="" placeholder="10 digits format">
-</p>
-<p class="row-in-form">
-<label for="zip-code">Profile Photo</label>
-<img src="/storage/storage/{{$users->profile_pic}}" width="200" height="200"/>
-</p>
-<p class="row-in-form">
-<label for="zip-code">Profile Photo</label>
-<input id="zip-code" type="file" name="file" value="" placeholder="Your postal code">
-</p>
+        <div class="wrap-breadcrumb">
+            <ul>
+                <li class="item-link"><a href="/" class="link">home</a></li>
+                <li class="item-link"><span>Account Details</span></li>
+            </ul>
+        </div>
+        <div class=" main-content-area">
+            <div class="summary summary-checkout">
+                <div class="wrap-address-billing">
+                    <h3 class="box-title">Profile Details</h3>
+                    <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data" name="frm-billing">
 
-</div>
-</div>
-<div class="summary summary-checkout">
-<div class="wrap-address-billing">
-<h3 class="box-title">BILLING ADDRESS</h3>
+                        @csrf
 
+                        <p class="row-in-form">
+                            <label for="fname">Name<span>*</span></label>
+                            <input id="fname" type="text" name="name" value="{{$users->name}}" placeholder="Your name">
+                        </p>
+                        <p class="row-in-form">
+                            <label for="email">Email Addreess:</label>
+                            <input id="email" type="email" name="email" value="{{$users->email}}" placeholder="Type your email">
+                        </p>
+                        <p class="row-in-form">
+                            <label for="phone">Phone number<span>*</span></label>
+                            <input id="phone" type="number" name="phone1" value="{{$users->phone_no}}" placeholder="10 digits format">
+                        </p>
+                        <p class="row-in-form">
+                            <label for="phone">Phone number<span>*</span></label>
+                            <input id="phone" type="number" name="phone" value="" placeholder="10 digits format">
+                        </p>
+                        <p class="row-in-form">
+                            <label for="zip-code">Profile Photo</label>
+                            <img src="/storage/profile/{{$users->profile_pic}}" width="200" height="200" />
+                        </p>
+                        <p class="row-in-form">
+                            <label for="zip-code">Profile Photo</label>
+                            <input id="zip-code" type="file" name="file" value="" placeholder="Your postal code">
+                        </p>
 
-<p class="row-in-form">
-<label for="add">Address 1:</label>
-<input id="add" type="text" name="add1" value="{{$users->address_1}}"  placeholder="Street at apartment number">
-</p>
-<p class="row-in-form">
-<label for="add">Address 2:</label>
-<input id="add" type="text" name="add2" value="{{$users->address_2}}"   placeholder="Street at apartment number">
-</p>
-<p class="row-in-form">
-<label for="country">Country<span>*</span></label>
-<input id="country" type="text" name="country_id" value="{{$users->country_id}}" placeholder="United States">
-</p>
-<p class="row-in-form">
-<label for="country">State<span>*</span></label>
-<input id="country" type="text" name="state_id" value="{{$users->state_id}}" placeholder="United States">
-</p>
-<p class="row-in-form">
-<label for="city">Town / City<span>*</span></label>
-<input id="city" type="text" name="city_id" value="{{$users->city_id}}" placeholder="City name">
-</p>
-<p class="row-in-form">
-<label for="zip-code">Postcode / ZIP:</label>
-<input id="zip-code" type="number" name="zip_code" value="{{$users->zip_code}}" placeholder="Your postal code">
-</p>
-<button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
+                </div>
+            </div>
+            <div class="summary summary-checkout">
+                <div class="wrap-address-billing">
+                    <h3 class="box-title">BILLING ADDRESS</h3>
 
 
-</form>
-</div>
-</div>
+                    <p class="row-in-form">
+                        <label for="add">Address 1:</label>
+                        <input id="add" type="text" name="add1" value="{{$users->address_1}}" placeholder="Street at apartment number">
+                    </p>
+                    <p class="row-in-form">
+                        <label for="add">Address 2:</label>
+                        <input id="add" type="text" name="add2" value="{{$users->address_2}}" placeholder="Street at apartment number">
+                    </p>
+                    <p class="row-in-form">
+                        <label for="country">Country<span>*</span></label>
+                        <input id="country" type="text" name="country_id" value="{{$users->country_id}}" placeholder="United States">
+                    </p>
+                    <p class="row-in-form">
+                        <label for="country">State<span>*</span></label>
+                        <input id="country" type="text" name="state_id" value="{{$users->state_id}}" placeholder="United States">
+                    </p>
+                    <p class="row-in-form">
+                        <label for="city">Town / City<span>*</span></label>
+                        <input id="city" type="text" name="city_id" value="{{$users->city_id}}" placeholder="City name">
+                    </p>
+                    <p class="row-in-form">
+                        <label for="zip-code">Postcode / ZIP:</label>
+                        <input id="zip-code" type="number" name="zip_code" value="{{$users->zip_code}}" placeholder="Your postal code">
+                    </p>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
 
 
-</div><!--end main content area-->
-</div><!--end container-->
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+        <!--end main content area-->
+    </div>
+    <!--end container-->
 
 </main>
 <!--main area-->
@@ -153,7 +155,7 @@
                                         <li>
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                             <p class="contact-txt">Contact@yourcompany.com</p>
-                                        </li>											
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -257,8 +259,12 @@
                             <div class="item-content">
                                 <div class="wrap-list-item apps-list">
                                     <ul>
-                                        <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
-                                        <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
+                                        <li><a href="#" class="link-to-item" title="our application on apple store">
+                                                <figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure>
+                                            </a></li>
+                                        <li><a href="#" class="link-to-item" title="our application on google play store">
+                                                <figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure>
+                                            </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -273,7 +279,7 @@
                     <div class="back-link-box">
                         <h3 class="backlink-title">Quick Links</h3>
                         <div class="back-link-row">
-                            <ul class="list-back-link" >
+                            <ul class="list-back-link">
                                 <li><span class="row-title">Mobiles:</span></li>
                                 <li><a href="#" class="redirect-back-link" title="mobile">Mobiles</a></li>
                                 <li><a href="#" class="redirect-back-link" title="yphones">YPhones</a></li>
@@ -287,30 +293,30 @@
                                 <li><a href="#" class="redirect-back-link" title="Mobiles Lenova">Mobiles Lenova</a></li>
                             </ul>
 
-                            <ul class="list-back-link" >
+                            <ul class="list-back-link">
                                 <li><span class="row-title">Tablets:</span></li>
                                 <li><a href="#" class="redirect-back-link" title="Plesc YPads">Plesc YPads</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Samsyng Tablets" >Samsyng Tablets</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Qindows Tablets" >Qindows Tablets</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Calling Tablets" >Calling Tablets</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Micrumex Tablets" >Micrumex Tablets</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus" >Lenova Tablets Bsus</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets iBall" >Tablets iBall</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets Swipe" >Tablets Swipe</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio" >Tablets TVs, Audio</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Samsyng Tablets">Samsyng Tablets</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Qindows Tablets">Qindows Tablets</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Calling Tablets">Calling Tablets</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Micrumex Tablets">Micrumex Tablets</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus">Lenova Tablets Bsus</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets iBall">Tablets iBall</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets Swipe">Tablets Swipe</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio">Tablets TVs, Audio</a></li>
                             </ul>
 
-                            <ul class="list-back-link" >
+                            <ul class="list-back-link">
                                 <li><span class="row-title">Fashion:</span></li>
-                                <li><a href="#" class="redirect-back-link" title="Sarees Silk" >Sarees Silk</a></li>
-                                <li><a href="#" class="redirect-back-link" title="sarees Salwar" >sarees Salwar</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Suits Lehengas" >Suits Lehengas</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Biba Jewellery" >Biba Jewellery</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Rings Earrings" >Rings Earrings</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Diamond Rings" >Diamond Rings</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes" >Loose Diamond Shoes</a></li>
-                                <li><a href="#" class="redirect-back-link" title="BootsMen Watches" >BootsMen Watches</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Women Watches" >Women Watches</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Sarees Silk">Sarees Silk</a></li>
+                                <li><a href="#" class="redirect-back-link" title="sarees Salwar">sarees Salwar</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Suits Lehengas">Suits Lehengas</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Biba Jewellery">Biba Jewellery</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Rings Earrings">Rings Earrings</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Diamond Rings">Diamond Rings</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes">Loose Diamond Shoes</a></li>
+                                <li><a href="#" class="redirect-back-link" title="BootsMen Watches">BootsMen Watches</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Women Watches">Women Watches</a></li>
                             </ul>
 
                         </div>
@@ -328,10 +334,10 @@
                 <div class="coppy-right-item item-right">
                     <div class="wrap-nav horizontal-nav">
                         <ul>
-                            <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>								
+                            <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>
                             <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy Policy</a></li>
                             <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms & Conditions</a></li>
-                            <li class="menu-item"><a href="return-policy.html" class="link-term">Return Policy</a></li>								
+                            <li class="menu-item"><a href="return-policy.html" class="link-term">Return Policy</a></li>
                         </ul>
                     </div>
                 </div>

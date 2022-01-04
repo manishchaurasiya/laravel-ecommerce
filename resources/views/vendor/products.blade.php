@@ -55,13 +55,13 @@
 <!-- https://jquery.com/download/ -->
 <script src="{{('/vendor/js/bootstrap.min.js')}}"></script>
 <!-- https://getbootstrap.com/ -->
-<script>
+<!-- <script>
   $(function() {
     $(".tm-product-name").on("click", function() {
       window.location.href = "edit-product.html";
     });
   });
-</script>
+</script> -->
 </body>
 
 </html>

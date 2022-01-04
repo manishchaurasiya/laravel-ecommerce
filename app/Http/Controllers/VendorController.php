@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Foreach_;
 
-
 class VendorController extends Controller
 {
     public function dashboard()
@@ -54,6 +53,10 @@ class VendorController extends Controller
 
     public function updateProfilePic(Request $request)
     {
+    //   dd($request->toArray());
+        $request->validate([
+                'file' => 'required|mimes:jpg,png'
+        ]);
         $model = User::find(auth()->user()->id);
 
         if ($request->hasFile('file')) {
@@ -85,6 +88,20 @@ class VendorController extends Controller
         return redirect()->back();
     }
 
+    public function updateProfile( Request $request)
+    {
+        $validation =$request->validate([
+            'name' =>'required',
+            'email' => 'required',
+            'phone' => 'Required|min:10|max:10'
+        ]);
+
+        User::updateOrCreate(
+            ['id' => auth()->user()->id],
+            ['name' => $request->name,'email'=>$request->email,'phone_no'=> $request->phone]
+        );
+        return redirect()->back()->with('success','Profile updated successfully!');
+    }
 
 
 
@@ -120,25 +137,26 @@ class VendorController extends Controller
         return redirect('vendor/products');
     }
 
-    public function editProduct(Request $request, $id)
+    public function editProduct(Request $request, $id) 
     {
         $categories = category::get();
+        $colors = Color::get();
+        $brands = Brand::get();
         $productDetails = product::find($id);
-        return view('vendor.editProduct', ['categories' => $categories, 'productDetails' => $productDetails]);
+        // dd($productDetails->toArray());
+        return view('vendor.editProduct', compact('categories', 'productDetails', 'colors','brands'));
     }
 
     public function updateProduct(Request $request, $id)
     {
-        // dd($request->input());2
-        $update = product::find($id);
+        // dd($id);
+        $update = product::updateOrCreate(
+            ['id'=> $id],
+            ['name' => $request->name, 'description' => $request->description, 'category_id' => $request->category, 'color_id' => $request->color, 'brand_id' => $request->brand, 'vendor_id' =>auth()->user()->id, 'price' => $request->price ]
+        );
 
-        $update->name = $request->name;
-        $update->description = $request->description;
-        $update->category_id = $request->category;
-        $update->vendor_id = auth()->user()->id;
-        $update->price = $request->price;
-        $update->save();
-        return redirect('/vendor/products');
+        // return redirect('/vendor/products');
+        return redirect()->back();
     }
 
 

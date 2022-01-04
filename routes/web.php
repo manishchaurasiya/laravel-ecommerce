@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
         Route::get('changeStatus/{id}', [VendorController::class, 'changeStatus'])->name('changeStatus');
         Route::post('updateProfilePic',[VendorController::class, 'updateProfilePic'])->name('updateProfilePic');
         Route::get('deleteProfilePic',[VendorController::class, 'deleteProfilePic'])->name('deleteProfilePic');
+        Route::get('updateProfile',[VendorController::class, 'updateProfile'])->name('updateProfile');
     });
     Route::get('dashboard', [VendorController::class, 'dashboard'])->name('dashboard');
 });
