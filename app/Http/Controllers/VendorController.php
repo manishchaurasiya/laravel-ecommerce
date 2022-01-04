@@ -77,7 +77,7 @@ class VendorController extends Controller
         $model = User::find(auth()->user()->id);
 
         $oldphoto = $model->profile_pic;
-        $model->profile_pic = "";
+        $model->profile_pic = "NULL";
         if (Storage::exists('public/profile/' . $oldphoto)) {
             Storage::delete('public/profile/' . $oldphoto);
         }
