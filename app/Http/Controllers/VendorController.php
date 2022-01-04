@@ -9,9 +9,11 @@ use App\Models\Order;
 use App\Models\product;
 use App\Models\ProductImage;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Foreach_;
+
 
 class VendorController extends Controller
 {
@@ -44,10 +46,47 @@ class VendorController extends Controller
 
 
     public function profile()
-    {   //dd('test');
+    {
         $data = User::find(auth()->user()->id);
+        // dd($data->toArray());
         return view('vendor.profile', ['data' => $data]);
     }
+
+    public function updateProfilePic(Request $request)
+    {
+        $model = User::find(auth()->user()->id);
+
+        if ($request->hasFile('file')) {
+            $oldphoto = $model->profile_pic;
+            $fileName = $request->file('file')->getClientOriginalName();
+            $fileName = rand(1111, 9999) . "_" . $fileName;
+            $path = $request->file('file')->storeAs('profile', $fileName, 'public');
+            $model->profile_pic = $fileName;
+            if ($path) {
+                if (Storage::exists('public/profile/' . $oldphoto)) {
+                    Storage::delete('public/profile/' . $oldphoto);
+                }
+            }
+        }
+        $model->save();
+        return redirect()->back();
+    }
+
+    public function deleteProfilePic()
+    {
+        $model = User::find(auth()->user()->id);
+
+        $oldphoto = $model->profile_pic;
+        $model->profile_pic = "";
+        if (Storage::exists('public/profile/' . $oldphoto)) {
+            Storage::delete('public/profile/' . $oldphoto);
+        }
+        $model->save();
+        return redirect()->back();
+    }
+
+
+
 
     // insert data product data into product table 
 
@@ -114,10 +153,10 @@ class VendorController extends Controller
 
     public function changeStatus($id)
     {
-        $update=['status'=>'changeStatus'];
-        $response = Order::find($id)->update(['status' => 'Completed'] );
+        $update = ['status' => 'changeStatus'];
+        $response = Order::find($id)->update(['status' => 'Completed']);
         // dd($response->toArray());
 
-        return redirect()->back()->with('success','Status updated successfully!');
+        return redirect()->back()->with('success', 'Status updated successfully!');
     }
 }

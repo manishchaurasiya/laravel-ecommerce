@@ -8,14 +8,31 @@
             <div class="tm-bg-primary-dark tm-block tm-block-avatar">
                 <h2 class="tm-block-title">Change Avatar</h2>
                 <div class="tm-avatar-container">
-                    <img src="/storage/storage/{{$data->profile_pic}}" alt="Avatar" class="tm-avatar img-fluid mb-4" />
-                    <a href="#" class="tm-avatar-delete-link">
+                    @if($data->profile_pic == NULL)
+                    <img src="https://cdn.icon-icons.com/icons2/1904/PNG/512/profile_121261.png" alt="Avatar" class="tm-avatar img-fluid mb-4" />
+                    @else
+                    <img src="{{asset('storage/profile/'.$data->profile_pic)}}" alt="Avadfhckdjfdlfjtar" class="tm-avatar img-fluid mb-4"/>
+                    @endif
+                    <a href="{{ route('vendor.deleteProfilePic') }}" class="tm-avatar-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                     </a>
                 </div>
-                <button class="btn btn-primary btn-block text-uppercase">
-                    Upload New Photo
-                </button>
+                <form action="{{ route('vendor.updateProfilePic') }}" method="post" enctype="multipart/form-data" id="ProfileForm">
+                @csrf
+                <input type="file" name="file" id="file">
+                <input type="submit" class="btn btn-primary btn-block text-uppercase" id='updateProfile' value="Upload New Photo">
+                </form>
+                <!-- <script>
+                $(document).ready(function(){
+                    $('#updateProfile').click(function(e){
+                        // e.preventDefault();
+                        $('#file').click();
+
+                            $('#ProfileForm').submit();
+                        
+                    });
+                });
+                </script> -->
             </div>
         </div>
         <div class="tm-block-col tm-col-account-settings">
@@ -63,7 +80,7 @@
         <p class="text-center text-white mb-0 px-4 small">
             Copyright &copy; <b>2018</b> All rights reserved.
 
-            Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+           
         </p>
     </div>
 </footer>
