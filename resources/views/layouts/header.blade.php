@@ -44,8 +44,7 @@
 								<li class="menu-item menu-item-has-children parent">
 									<a title="My Account" href="/">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu curency">
-										<li class="menu-item"><a href="{{route ('myOrder') }}">Orders</a></li>
-										<li class="menu-item"><a href="#">Address</a></li>
+										<li class="menu-item"><a href="{{route ('myOrder') }}">My Orders</a></li>
 										<li class="menu-item"><a href="{{url('Account')}}">Account Details</a></li>
 										<li class="menu-item"><a title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                            				 document.getElementById('logout-form').submit();">Logout</a></li>

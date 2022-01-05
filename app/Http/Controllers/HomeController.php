@@ -38,9 +38,14 @@ class HomeController extends Controller
     {
         $categories = Category::where('status','Active')->get();
         // $products = Product::with(['Thumbnail','Brand'])
-        $products = Product::with(['Thumbnail','Brand'])->where('status','Active')->get();
+        $products = Product::with(['Thumbnail','Brand'])->where('status','Active')->whereHas('Brand',function($que){
+            $que->where('status','Active');
+        })->get();
 
-        // dd($products->toArray());
+        // $products->whereHas('Color',function($que){
+        //     $que->where('status','Active'); } )->get();
+
+        dd($products->toArray() );
         $smartphones = Product::with('Thumbnail')->where([['category_id', 1],['status','Active']])->take(8)->get();
         $watches = Product::with('Thumbnail')->where([['category_id', 2],['status','Active']])->take(8)->get();
         $laptops = Product::with('Thumbnail')->where([['category_id', 3],['status','Active']])->take(8)->get();
