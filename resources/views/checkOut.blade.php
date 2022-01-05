@@ -7,44 +7,68 @@
 			<div class="wrap-address-billing">
 				<h3 class="box-title">Billing Address</h3>
 				<form role="form" action="{{route ('order',$products->id) }}" method="post" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="{{'pk_test_51Jvy5USGXOKFwj9ebBhibTUW6GCgqFdM3hl2kkuNAxgvrTOegBf93yOidAhTLqfG4Mi0JRmLcYhw9E11t2Q5nYSZ00YxCRZ5zo'}}" id="payment-form">
-											@csrf
+					@csrf
 					<p class="row-in-form">
 						<label for="fname">first name<span>*</span></label>
 						<input id="fname" type="text" name="name" value="{{$userDetail->name}}" placeholder="Your name">
+						@error('name')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 					<p class="row-in-form">
 						<label for="email">Email Addreess:</label>
 						<input id="email" type="email" name="email" value="{{$userDetail->email}}" placeholder="Type your email">
+						@error('email')
+        <div class="error-message">  {{$message}} </div>
+       @enderror
 					</p>
 					<p class="row-in-form">
 						<label for="phone">Phone number<span>*</span></label>
 						<input id="phone" type="text" name="phone" value="{{$userDetail->phone_no}}" placeholder="10 digits format">
+						@error('phone')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 					<p class="row-in-form">
 						<label for="add">Address:</label>
 						<input id="add" type="text" name="address" value="{{$userDetail->address_1}}" placeholder="Street and apartment number">
+						@error('address')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 					<p class="row-in-form">
 						<label for="zip-code">Postcode / ZIP:</label>
 						<input id="zip-code" type="number" name="zip_code" value="{{$userDetail->zip_code}}" placeholder="Your postal code">
+						@error('zip_code')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 					<p class="row-in-form">
 						<label for="city">Town / City<span>*</span></label>
 						<input id="city" type="text" name="city" value="{{$userDetail->city_id}}" placeholder="City name">
+						@error('city')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 
 					<p class="row-in-form">
 						<label for="city">State<span>*</span></label>
 						<input id="city" type="text" name="state" value="{{$userDetail->state_id}}" placeholder="State name">
+						@error('state')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 					<p class="row-in-form">
 						<label for="country">Country<span>*</span></label>
 						<input id="country" type="text" name="country" value="{{$userDetail->country_id}}" placeholder="United States">
+						@error('country')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
 					</p>
 
 
-				</div>
-				<div class="summary summary-checkout">
+			</div>
+			<div class="summary summary-checkout">
 				<div class="container-fluid">
 					<div class="summary-item payment-method">
 						<h4 class="title-box">Payment</h4>
@@ -68,44 +92,48 @@
 										</div>
 										@endif
 
-									
-											<div class='form-row row'>
-												<div class='col-xs-12 form-group required'>
-													<label class='control-label'>Name on Card</label> <input class='form-control' size='4' type='text'>
-												</div>
-											</div>
 
-											<div class='form-row row'>
-												<div class='col-xs-12 form-group card required'>
-													<label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' size='20' type='text'>
-												</div>
+										<div class='form-row row'>
+											<div class='col-xs-12 form-group required'>
+												<label class='control-label'>Name on Card</label> <input class='form-control' size='4' type='text'>
 											</div>
+										</div>
 
-											<div class='form-row row'>
-												<div class='col-xs-12 col-md-4 form-group cvc required'>
-													<label class='control-label'>CVC</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
-												</div>
-												<div class='col-xs-12 col-md-4 form-group expiration required'>
-													<label class='control-label'>Expiration Month</label> <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
-												</div>
-												<div class='col-xs-12 col-md-4 form-group expiration required'>
-													<label class='control-label'>Expiration Year</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
-												</div>
+										<div class='form-row row'>
+											<div class='col-xs-12 form-group card required'>
+												<label class='control-label'>Card Number</label> <input autocomplete='off' class='form-control card-number' size='20' type='text'>
 											</div>
+										</div>
 
-											<div class='form-row row'>
-												<div class='col-md-12 error form-group hide'>
-													<div class='alert-danger alert'>Please correct the errors and try
-														again.</div>
-												</div>
+										<div class='form-row row'>
+											<div class='col-xs-12 col-md-4 form-group cvc required'>
+												<label class='control-label'>CVC</label> <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
 											</div>
+											<div class='col-xs-12 col-md-4 form-group expiration required'>
+												<label class='control-label'>Expiration Month</label> <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+											</div>
+											<div class='col-xs-12 col-md-4 form-group expiration required'>
+												<label class='control-label'>Expiration Year</label> <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+											</div>
+										</div>
 
-											<div class="row">
-												<div class="col-xs-12">
-													<input type="hidden" name="total_price" value="{{$totalPrice}}">
-													<button class="btn btn-primary btn-lg btn-block" name="total_price" type="submit">Pay Now {{$totalPrice}}</button>
-												</div>
+										<div class='form-row row'>
+											<div class='col-md-12 error form-group hide'>
+												<div class='alert-danger alert'>Please correct the errors and try
+													again.</div>
 											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12">
+												<input type="hidden" name="total_price" value="{{$totalPrice}}">
+								
+												<button class="btn btn-primary btn-lg btn-block" name="total_price" type="submit">Pay Now {{$totalPrice}}</button>
+												@error('total_price')
+					<div class="error-message"> {{$message}} </div>
+					@enderror
+											</div>
+										</div>
 
 										</form>
 									</div>
@@ -117,8 +145,8 @@
 				</div>
 			</div>
 
-	</div>
-	<!--end main content area-->
+		</div>
+		<!--end main content area-->
 	</div>
 	<!--end container-->
 

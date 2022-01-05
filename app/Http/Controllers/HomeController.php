@@ -66,7 +66,17 @@ class HomeController extends Controller
 
     public function order(Request $request, $id)
     {
-        // dd($request->all());
+        $request->validate([
+            'total_price'=>'required|numeric|min:0|not_in:0',
+            'name' => 'required|alpha',
+            'email' => 'required|email',
+            'phone' => 'required|integer|size:10',
+            'address' => 'required|alpha_num',
+            'zip_code' => 'required|integer|size:6',
+            'city' => 'required|alpha',
+            'state' => 'required|alpha',
+            'counrty' => 'required|alpha'
+        ]);
         Stripe\Stripe::setApiKey('sk_test_51Jvy5USGXOKFwj9elLz4ETwbPuk73xT4vdpa0MIjcnCw7MTypdwUJoAlbAldpbXgASZEWuhPNHigy0qyNQpmlXHM00zgcO7ZnW');
         $status = Stripe\Charge::create([
             "amount" => $request->total_price * 100,
@@ -129,6 +139,10 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
+        $categoryName= Category::where('id',$request->category)->value('name');
+        $colorName= Color::where('id',$request->color)->value('color');
+        $brandName= Brand::where('id',$request->brand)->value('brand');
+        // dd($categoryName);
         $categories = category::get();
         $colors = Color::get();
         $brands = Brand::get();
@@ -147,7 +161,7 @@ class HomeController extends Controller
             })->paginate(6);
         }
 
-        return view('shop', compact('categories', 'colors', 'brands', 'products'));
+        return view('shop', compact('categories', 'colors', 'brands', 'products','categoryName','colorName','brandName'));
     }
 
     public function search(Request $request)

@@ -29,11 +29,22 @@
 						</a>
 					</div>
 
-					<!-- <div class="wrap-shop-control">
+					<div class="wrap-shop-control">
+						<!-- <h3 style="margin-left: 10px; font-weight:900;">Category</h3> -->
+						<h1 class="shop-title">
+							@if($categoryName)
+							{{'Category'." " .$categoryName}}
+							@elseif($brandName)
+							{{'Brand'." " .$brandName}}
+							@elseif($colorName)
+							{{'Color'." " .$colorName}}
+							@else
+							{{'All product'}}
 
-						<h1 class="shop-title">Digital & Electronics</h1>
+							@endif   
+						</h1>
 
-						<div class="wrap-right">
+						<!-- <div class="wrap-right">
 
 							<div class="sort-item orderby ">
 								<select name="orderby" class="use-chosen" >
@@ -63,15 +74,16 @@
 								<a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
 							</div>
 
-						</div>
+						</div> -->
 
-					</div>end wrap shop control -->
+					</div>
+					<!-- end wrap shop control -->
 
 					<div class="row">
 						
 						<ul class="product-list grid-products equal-container">
+							<!-- {{$categoryName}} -->
 							@foreach($products as $product)
-							  {{$product->category}}
 							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
 								<div class="product product-style-3 equal-elem ">
 									<div class="product-thumnail">
@@ -93,15 +105,7 @@
 					</div>
 					{{$products->withQueryString()->links()}}
 
-					<!-- <div class="wrap-pagination-info">
-						<ul class="page-numbers">
-							<li><span class="page-number-item current" >1</span></li>
-							<li><a class="page-number-item" href="#" >2</a></li>
-							<li><a class="page-number-item" href="#" >3</a></li>
-							<li><a class="page-number-item next-link" href="#" >Next</a></li>
-						</ul>
-						<p class="result-count">Showing 1-8 of 12 result</p>
-					</div> -->
+				
 				</div><!--end main products area-->
 
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
@@ -128,19 +132,6 @@
 							</ul>
 						</div>
 					</div><!-- brand widget-->
-
-					<!-- <div class="widget mercado-widget filter-widget price-filter">
-						<h2 class="widget-title">Price</h2>
-						<div class="widget-content">
-							<div id="slider-range"></div>
-							<p>
-								<label for="amount">Price:</label>
-								<input type="text" id="amount" readonly>
-								<button class="filter-submit">Filter</button>
-							</p>
-						</div>
-					</div>Price -->
-
 					<div class="widget mercado-widget filter-widget">
 						<h2 class="widget-title">Color</h2>
 						<div class="widget-content">
