@@ -9,12 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'customer_id',
-        'vendor_id',
-        'product_id',
-        'price',
-        'status',
+    protected $fillable = [
+        'customer_id', 'vendor_id', 'product_id', 'price', 'status', 'name', 'email', 'mobile_no', 'address', 'zip_code', 'city', 'state', 'country',
     ];
 
     public function product()
@@ -23,7 +19,6 @@ class Order extends Model
     }
     public function userDetail()
     {
-        return $this->belongsTo(User::class,'customer_id','id');
+        return $this->belongsTo(User::class, 'customer_id', 'id');
     }
-
 }

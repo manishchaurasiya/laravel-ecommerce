@@ -66,6 +66,7 @@ class HomeController extends Controller
 
     public function order(Request $request, $id)
     {
+        // dd($request->all());
         Stripe\Stripe::setApiKey('sk_test_51Jvy5USGXOKFwj9elLz4ETwbPuk73xT4vdpa0MIjcnCw7MTypdwUJoAlbAldpbXgASZEWuhPNHigy0qyNQpmlXHM00zgcO7ZnW');
         $status = Stripe\Charge::create([
             "amount" => $request->total_price * 100,
@@ -82,6 +83,14 @@ class HomeController extends Controller
             'vendor_id' => $products->vendor_id,
             'product_id' => $products->id,
             'price' => $request->total_price,
+            'name' => $request->name,
+            'email' => $request->email,
+            'mobile_no' => $request->phone,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' =>$request->city,
+            'state' => $request->state,
+            'country' => $request->country
         ]);
                                                                                                                                                                
         Payment::create([
