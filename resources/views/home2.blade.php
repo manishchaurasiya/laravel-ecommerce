@@ -286,6 +286,7 @@
 			<div class="wrap-products">
 				<div class="wrap-product-tab tab-style-1">
 					<div class="tab-control">
+
 						@foreach($categories as $key => $category)
 						<a href="#{{$category->name}}" id="{{$category->id}}" class="tab-control-item {{($key == 0) ? 'active' : ''}}">{{$category->name}}</a>
 						@endforeach

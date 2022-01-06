@@ -36,22 +36,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('status','Active')->get();
-        // $products = Product::with(['Thumbnail','Brand'])
-        $products = Product::with(['Thumbnail','Brand'])->where('status','Active')->whereHas('Brand',function($que){
-            $que->where('status','Active');
+        $categories = Category::where('status', 'Active')->get();
+        $products = Product::with(['Thumbnail', 'Brand'])->where('status', 'Active')->whereHas('Brand', function ($que) {
+            $que->where('status', 'Active');
         })->get();
 
         // $products->whereHas('Color',function($que){
         //     $que->where('status','Active'); } )->get();
 
-        dd($products->toArray() );
-        $smartphones = Product::with('Thumbnail')->where([['category_id', 1],['status','Active']])->take(8)->get();
-        $watches = Product::with('Thumbnail')->where([['category_id', 2],['status','Active']])->take(8)->get();
-        $laptops = Product::with('Thumbnail')->where([['category_id', 3],['status','Active']])->take(8)->get();
-        $tablets = Product::with('Thumbnail')->where([['category_id', 4],['status','Active']])->take(8)->get();
-
-        // dd($watches->toArray());
+        // dd($products->toArray() );
+        $smartphones = Product::with('Thumbnail', 'Brand')->where([['category_id', 1], ['status', 'Active']])->whereHas('Brand', function ($que) {
+            $que->where('status', 'Active');
+        })->take(8)->get();
+        $watches = Product::with('Thumbnail', 'Brand')->where([['category_id', 2], ['status', 'Active']])->whereHas('Brand', function ($que) {
+            $que->where('status', 'Active');
+        })->take(8)->get();
+        $laptops = Product::with('Thumbnail', 'Brand')->where([['category_id', 3], ['status', 'Active']])->whereHas('Brand', function ($que) {
+            $que->where('status', 'Active');
+        })->take(8)->get();
+        $tablets = Product::with('Thumbnail', 'Brand')->where([['category_id', 4], ['status', 'Active']])->whereHas('Brand', function ($que) {
+            $que->where('status', 'Active');
+        })->take(8)->get();
         if (session()->has('url.intended')) {
             $url = session('url.intended');
             session()->forget('url.intended');
@@ -71,17 +76,17 @@ class HomeController extends Controller
 
     public function order(Request $request, $id)
     {
-        $request->validate([
-            'total_price'=>'required|numeric|min:0|not_in:0',
-            'name' => 'required|alpha',
-            'email' => 'required|email',
-            'phone' => 'required|integer|size:10',
-            'address' => 'required|alpha_num',
-            'zip_code' => 'required|integer|size:6',
-            'city' => 'required|alpha',
-            'state' => 'required|alpha',
-            'counrty' => 'required|alpha'
-        ]);
+        // $request->validate([
+        //     'total_price' => 'required|numeric|min:0|not_in:0',
+        //     'name' => 'required|alpha',
+        //     'email' => 'required|email',
+        //     'phone' => 'required|integer|size:10',
+        //     'address' => 'required|alpha_num',
+        //     'zip_code' => 'required|integer|size:6',
+        //     'city' => 'required|alpha',
+        //     'state' => 'required|alpha',
+        //     'counrty' => 'required|alpha'
+        // ]);
         Stripe\Stripe::setApiKey('sk_test_51Jvy5USGXOKFwj9elLz4ETwbPuk73xT4vdpa0MIjcnCw7MTypdwUJoAlbAldpbXgASZEWuhPNHigy0qyNQpmlXHM00zgcO7ZnW');
         $status = Stripe\Charge::create([
             "amount" => $request->total_price * 100,
@@ -103,11 +108,11 @@ class HomeController extends Controller
             'mobile_no' => $request->phone,
             'address' => $request->address,
             'zip_code' => $request->zip_code,
-            'city' =>$request->city,
+            'city' => $request->city,
             'state' => $request->state,
             'country' => $request->country
         ]);
-                                                                                                                                                               
+
         Payment::create([
             'payment_id' => $status->id,
             'price' => $request->total_price,
@@ -128,6 +133,7 @@ class HomeController extends Controller
 
     public function productDetail(Product $product)
     {
+
         $relatedProducts = $product->load(['Thumbnail', 'gallary'])->where([
             ['category_id', $product->category_id],
             ['id', '<>', $product->id]
@@ -144,9 +150,9 @@ class HomeController extends Controller
 
     public function shop(Request $request)
     {
-        $categoryName= Category::where('id',$request->category)->value('name');
-        $colorName= Color::where('id',$request->color)->value('color');
-        $brandName= Brand::where('id',$request->brand)->value('brand');
+        $categoryName = Category::where('id', $request->category)->value('name');
+        $colorName = Color::where('id', $request->color)->value('color');
+        $brandName = Brand::where('id', $request->brand)->value('brand');
         // dd($categoryName);
         $categories = category::get();
         $colors = Color::get();
@@ -166,7 +172,7 @@ class HomeController extends Controller
             })->paginate(6);
         }
 
-        return view('shop', compact('categories', 'colors', 'brands', 'products','categoryName','colorName','brandName'));
+        return view('shop', compact('categories', 'colors', 'brands', 'products', 'categoryName', 'colorName', 'brandName'));
     }
 
     public function search(Request $request)
